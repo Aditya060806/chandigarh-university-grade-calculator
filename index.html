@@ -55,27 +55,38 @@
       }
 
       .navbar {
-        background-color: var(--dark-color) !important;
-        border-bottom: 2px solid var(--primary-color);
+        padding: 0.5rem 1rem;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .navbar-brand {
+        padding: 0;
+        margin-right: 2rem;
       }
 
       .navbar-brand img {
-        filter: brightness(0) invert(1);
+        height: 40px;
+        width: auto;
       }
 
       .nav-link {
-        color: var(--text-color) !important;
-        transition: all 0.3s ease;
+        color: #333 !important;
         font-weight: 500;
+        padding: 0.5rem 1rem;
+        margin: 0 0.2rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
       }
 
       .nav-link:hover {
-        color: var(--hover-color) !important;
+        color: #4A90E2 !important;
+        background-color: rgba(74, 144, 226, 0.1);
       }
 
       .nav-link.active {
-        color: var(--primary-color) !important;
-        font-weight: bold;
+        color: #4A90E2 !important;
+        background-color: rgba(74, 144, 226, 0.1);
       }
 
       .card {
@@ -169,15 +180,17 @@
       .github-link {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        color: var(--text-color);
+        gap: 0.5rem;
+        color: #333;
         text-decoration: none;
-        transition: color 0.3s ease;
-        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
       }
 
       .github-link:hover {
-        color: var(--hover-color);
+        color: #4A90E2;
+        background-color: rgba(74, 144, 226, 0.1);
       }
 
       .container {
@@ -197,6 +210,17 @@
 
       .row {
         gap: 1.5rem 0;
+      }
+
+      @media (max-width: 991px) {
+        .navbar-collapse {
+          padding: 1rem 0;
+        }
+        
+        .github-link {
+          margin-top: 0.5rem;
+          justify-content: center;
+        }
       }
     </style>
 
@@ -226,9 +250,17 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="./index.html">
-          <img src="./assets/images/cuims-logo.png" alt="Bootstrap" width="100%" height="36">
+          <img src="./assets/icon/cu-logo.svg" alt="CU Calculator" height="40">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

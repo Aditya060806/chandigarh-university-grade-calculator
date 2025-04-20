@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80" height="40" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- C letter -->
+  <path d="M20 10C11.7157 10 5 16.7157 5 25C5 33.2843 11.7157 40 20 40C24.7 40 28.9 37.8 31.5 34.4" stroke="#E74C3C" stroke-width="4" stroke-linecap="round"/>
+  <!-- U letter -->
+  <path d="M45 10V30C45 35.5228 49.4772 40 55 40C60.5228 40 65 35.5228 65 30V10" stroke="#E74C3C" stroke-width="4" stroke-linecap="round"/>
+</svg> 
