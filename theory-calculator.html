@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theory Calculator - Chandigarh University </title>
+    <!-- Custom CSS -->
+    <style>
+      :root {
+        --primary-color: #2ECC71;
+        --secondary-color: #A8E6CF;
+        --dark-color: #1A2E1E;
+        --light-color: #ffffff;
+        --card-bg: #ffffff;
+        --hover-color: #27AE60;
+        --text-color: #333333;
+        --border-radius: 12px;
+        --box-shadow: 0 8px 30px rgba(46, 204, 113, 0.1);
+      }
+
+      body {
+        background: linear-gradient(135deg, #E8F8F1, #D4F3E5);
+        color: var(--text-color);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        background-color: var(--light-color) !important;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand img {
+        filter: brightness(1);
+        transition: transform 0.3s ease;
+      }
+
+      .navbar-brand:hover img {
+        transform: scale(1.05);
+      }
+
+      .nav-link {
+        color: var(--text-color) !important;
+        font-weight: 500;
+        padding: 0.8rem 1.2rem;
+        margin: 0 0.3rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        background-color: #E8F8F1;
+        color: var(--primary-color) !important;
+      }
+
+      .nav-link.active {
+        background-color: var(--primary-color);
+        color: white !important;
+      }
+
+      .container {
+        max-width: 1200px;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: var(--text-color);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(46, 204, 113, 0.1);
+      }
+
+      .calculator-container {
+        background-color: var(--light-color);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 2rem;
+        margin-top: 2rem;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .form-control {
+        border: 2px solid #E8F8F1;
+        border-radius: 10px;
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background-color: #F8FFF9;
+      }
+
+      .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(46, 204, 113, 0.25);
+        background-color: white;
+      }
+
+      select.form-control {
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232ECC71' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.5l-5-5h10l-5 5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+      }
+
+      .btn {
+        border-radius: 10px;
+        padding: 0.8rem 1.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: -100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: 0.5s;
+      }
+
+      .btn:hover::after {
+        left: 100%;
+      }
+
+      .btn-primary {
+        background: linear-gradient(45deg, var(--primary-color), var(--hover-color));
+        border: none;
+        box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .calculator-container {
+          padding: 1.5rem;
+        }
+
+        .btn {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      footer {
+        background-color: rgba(255, 255, 255, 0.95);
+        color: var(--text-color);
+        border-top: 2px solid var(--primary-color);
+        padding: 1.5rem 0;
+        margin-top: 3rem;
+      }
+
+      footer p {
+        color: var(--text-color);
+        margin: 0;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      footer .heart {
+        color: #E74C3C;
+        display: inline-block;
+        animation: heartbeat 1.5s infinite;
+      }
+
+      footer a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        position: relative;
+      }
+
+      footer a:hover {
+        color: var(--hover-color);
+      }
+
+      footer a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+
+      footer a:hover::after {
+        width: 100%;
+      }
+
+      @keyframes heartbeat {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
+    </style>
+
+     <!-- bootstrap all files links  -->
+     <link rel="stylesheet" href="./assets/vendors/bootstrap/bootstrap.min.css">
+     <link rel="stylesheet" href="./assets/vendors/bootstrap/all.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="stylesheet" href="./assets/vendors/sweetalert/sweetalert2.min.css">
+    <script src="./assets/vendors/sweetalert/sweetalert2.all.min.js"></script>
+    <link
+      rel="icon"
+      href="./assets/icon/favicon.svg"
+      type="image/svg+xml"
+    />
+  </head>
+  <body>
+    <!-- navbar section  -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="./index.html">
+          <img src="./assets/images/cuims-logo.png" alt="CU Logo" width="100%" height="36">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./sgpa-calculator.html">SGPA Calculator</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" href="./theory-calculator.html">Theory Calculator</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./hybrid-calculator.html">Hybrid Calculator</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Calculator Container -->
+    <div class="container">
+      <h1>Theory Subject Calculator</h1>
+      <div class="calculator-container">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <input id="mst1-mark" class="form-control" type="number" placeholder="MST 1 Marks" min="0" max="20">
+          </div>
+          <div class="col-md-4 mb-3">
+            <input id="mst2-mark" class="form-control" type="number" placeholder="MST 2 Marks" min="0" max="20">
+          </div>
+          <div class="col-md-4 mb-3">
+            <select id="assignment-mark" class="form-control">
+              <option value="">Assignment Marks</option>
+              <option value="10">10</option>
+              <option value="9">9</option>
+              <option value="8">8</option>
+              <option value="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+              <option value="0">0</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-4 mb-3">
+            <select id="quiz-mark" class="form-control">
+              <option value="">Quiz Marks</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+              <option value="0">0</option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <select id="surprise-test-mark" class="form-control">
+              <option value="">Surprise Test Marks</option>
+              <option value="12">12</option>
+              <option value="11">11</option>               
+              <option value="10">10</option>
+              <option value="9">9</option>
+              <option value="8">8</option>
+              <option value="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+              <option value="0">0</option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <select id="attendence-mark" class="form-control">
+              <option value="">Attendance Marks</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+              <option value="0">0</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <button id="calculate-btn" class="btn btn-primary">
+              <i class="fas fa-calculator me-2"></i>Calculate Theory Marks
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/theoryCal.js"></script>
+  </body>
+</html>

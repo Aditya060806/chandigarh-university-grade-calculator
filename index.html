@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chandigarh University GRADE Calculator</title>
+    <meta
+      name="description"
+      content="Calculate Chandigarh University SGPA with this helpful online tool. Chandigarh University Calculator cgpa. Chandigarh University Theory, Practical and Hybrid Subject Score Calculator Chandigarh University CGPA to percentage"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Chandigarh University SGPA Calculator" />
+    <meta property="og:description" content="Calculate Chandigarh University SGPA with this helpful online tool. Chandigarh University Calculator cgpa. Chandigarh University Theory, Practical and Hybrid Subject Score Calculator Chandigarh University CGPA to percentage" />
+    <meta property="og:image" content="./assets/images/cu-calculator-og.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Chandigarh University SGPA Calculator" />
+    <meta property="twitter:description" content="Calculate Chandigarh University SGPA with this helpful online tool. Chandigarh University Calculator cgpa. Chandigarh University Theory, Practical and Hybrid Subject Score Calculator Chandigarh University CGPA to percentage" />
+    <meta property="twitter:image" content="./assets/images/cu-calculator-og.png" />
+
+    <!-- Custom CSS -->
+    <style>
+      :root {
+        --primary-color: #ff6b35;
+        --secondary-color: #f7c59f;
+        --dark-color: #3a2a2a;
+        --light-color: #ffffff;
+        --card-bg: #2a1a1a;
+        --hover-color: #ff8c5a;
+        --text-color: #f0f0f0;
+      }
+
+      body {
+        background-color: var(--dark-color);
+        color: var(--text-color);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .navbar {
+        background-color: var(--dark-color) !important;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      .navbar-brand img {
+        filter: brightness(0) invert(1);
+      }
+
+      .nav-link {
+        color: var(--text-color) !important;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .nav-link:hover {
+        color: var(--hover-color) !important;
+      }
+
+      .nav-link.active {
+        color: var(--primary-color) !important;
+        font-weight: bold;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--primary-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
+        border-color: var(--hover-color);
+      }
+
+      .card-img-top {
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .card:hover .card-img-top {
+        transform: scale(1.05);
+      }
+
+      .card-title {
+        color: var(--primary-color);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .card-text {
+        color: #000000;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .btn-outline-primary {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+        transition: all 0.3s ease;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .btn-outline-primary:hover {
+        background-color: var(--primary-color);
+        color: var(--dark-color);
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline-dark {
+        color: var(--text-color);
+        border-color: var(--text-color);
+      }
+
+      .btn-outline-dark:hover {
+        background-color: var(--text-color);
+        color: var(--dark-color);
+      }
+
+      footer {
+        background-color: var(--dark-color);
+        border-top: 2px solid var(--primary-color);
+        padding: 1rem 0;
+      }
+
+      footer a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-weight: 500;
+      }
+
+      footer a:hover {
+        color: var(--hover-color);
+      }
+
+      .github-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-weight: 500;
+      }
+
+      .github-link:hover {
+        color: var(--hover-color);
+      }
+
+      .container {
+        max-width: 1200px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-body {
+        padding: 1.5rem;
+      }
+
+      .row {
+        gap: 1.5rem 0;
+      }
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./assets/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/vendors/bootstrap/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link
+      rel="icon"
+      href="./assets/icon/favicon.svg"
+      type="image/svg+xml"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="./index.html">
+          <img src="./assets/images/cuims-logo.png" alt="Bootstrap" width="100%" height="36">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" aria-current="page" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./sgpa-calculator.html">SGPA Calculator</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./theory-calculator.html">Theory Calculator</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./hybrid-calculator.html">Hybrid Calculator</a>
+            </li>
+          </ul>
+          <a href="https://github.com/Aditya060806" target="_blank" class="github-link">
+            <i class="fab fa-github"></i>
+            <span>Aditya Pandey</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5 mb-3">
+      <h1 class="text-center mb-5" style="color: var(--primary-color);">Chandigarh University Grade Calculator</h1>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card mb-3">
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="SGPA Calculator">
+            <div class="card-body">
+              <h4 class="card-title">SGPA Calculator</h4>
+              <p class="card-text">Calculate Chandigarh University SGPA with this helpful online tool.</p>
+              <a href="./sgpa-calculator.html" class="btn btn-outline-primary w-100">Calculate SGPA</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card mb-3">
+            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="Theory Calculator">
+            <div class="card-body">
+              <h4 class="card-title">Theory Calculator</h4>
+              <p class="card-text">Easily compute internal marks for theory subjects with this efficient tool.</p>
+              <a href="./theory-calculator.html" class="btn btn-outline-primary w-100">Calculate Theory</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card mb-3">
+            <img src="./assets/images/hybrid-calculator.png" class="card-img-top" alt="Hybrid Calculator">
+            <div class="card-body">
+              <h4 class="card-title">Hybrid Calculator</h4>
+              <p class="card-text">Effortlessly determine marks for hybrid subjects using this intuitive calculator.</p>
+              <a href="./hybrid-calculator.html" class="btn btn-outline-primary w-100">Calculate Hybrid</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer style="text-align: center; padding: 1.5rem 0; background-color: #ffffff; color: #2C3E50; font-size: 1.1rem; margin-top: 3rem; border-top: 1px solid #e5e5e5;">
+      © 2025 Chandigarh University Calculator • Developed by Aditya Pandey
+    </footer>
+
+    <script src="./assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

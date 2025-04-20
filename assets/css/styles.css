@@ -1,0 +1,38 @@
+/*
+body {
+  background: linear-gradient(
+    90deg,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+  color: #fff;
+}
+.wrapper {
+  max-width: 90%;
+  margin: auto;
+}
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+table {
+  margin-top: 30px;
+}
+.display-none {
+  display: none;
+}
+tbody td {
+  text-transform: uppercase;
+}
+
+.footer {
+  margin-top: 66vh;
+}
+#calc-gp {
+  margin-bottom: 10px;
+}
+
+
+*/
+
