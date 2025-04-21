@@ -6,37 +6,49 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable",
-        "x-frame-options": "DENY",
-        "x-content-type-options": "nosniff",
-        "x-xss-protection": "1; mode=block",
-        "content-security-policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel.app *.jsdelivr.net *.cloudflare.com *.googleapis.com *.gstatic.com *.fontawesome.com *.github.com data:; img-src 'self' data: blob: *.vercel.app;",
-        "permissions-policy": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()",
-        "referrer-policy": "strict-origin-when-cross-origin"
-      }
-    },
-    {
-      "src": "/assets/(.*)",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
-      },
-      "continue": true
-    },
-    {
-      "handle": "filesystem"
-    }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "github": {
-    "silent": true
-  },
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel.app *.jsdelivr.net *.cloudflare.com *.googleapis.com *.gstatic.com *.fontawesome.com *.github.com data:; img-src 'self' data: blob: *.vercel.app;"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
     {
       "source": "/assets/images/(.*)",
       "headers": [
@@ -65,6 +77,15 @@
       ]
     }
   ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
+    }
+  ],
+  "github": {
+    "silent": true
+  },
   "images": {
     "sizes": [640, 750, 828, 1080, 1200],
     "domains": ["github.com", "raw.githubusercontent.com"],
