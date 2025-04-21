@@ -40,16 +40,16 @@
     <style>
       :root {
         --primary-color: #ff6b35;
-        --secondary-color: #f7c59f;
-        --dark-color: #3a2a2a;
+        --secondary-color: #fff0e6;
+        --dark-color: #2C3E50;
         --light-color: #ffffff;
-        --card-bg: #2a1a1a;
+        --card-bg: #ffffff;
         --hover-color: #ff8c5a;
-        --text-color: #f0f0f0;
+        --text-color: #2C3E50;
       }
 
       body {
-        background-color: var(--dark-color);
+        background: linear-gradient(135deg, #ffeee6, #ffe4d4);
         color: var(--text-color);
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         min-height: 100vh;
@@ -57,54 +57,75 @@
         flex-direction: column;
       }
 
+      .main-heading {
+        color: #e85d24;
+        font-size: 3rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+        padding-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .main-heading::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #e85d24, #ff8c5a);
+        border-radius: 2px;
+      }
+
       .navbar {
-        padding: 0.5rem 1rem;
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 2px 15px rgba(255, 107, 53, 0.1);
+        padding: 0.75rem 1rem;
       }
 
       .navbar-brand {
-        padding: 0;
+        display: inline-flex;
+        align-items: center;
         margin-right: 2rem;
+        padding: 0;
+        line-height: 1;
+        min-width: 150px;
       }
 
       .navbar-brand img {
-        height: 40px;
+        max-height: 45px;
         width: auto;
+        vertical-align: middle;
+        margin-bottom: 0;
+        display: block;
       }
 
       .nav-link {
-        color: #333 !important;
-        font-weight: 500;
-        padding: 0.5rem 1rem;
-        margin: 0 0.2rem;
-        border-radius: 6px;
+        color: var(--text-color) !important;
+        font-weight: 600;
         transition: all 0.3s ease;
       }
 
-      .nav-link:hover {
-        color: #4A90E2 !important;
-        background-color: rgba(74, 144, 226, 0.1);
-      }
-
-      .nav-link.active {
-        color: #4A90E2 !important;
-        background-color: rgba(74, 144, 226, 0.1);
+      .nav-link:hover, .nav-link.active {
+        color: #ff6b35 !important;
       }
 
       .card {
         background-color: var(--card-bg);
-        border: 1px solid var(--primary-color);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        height: 100%;
+        border: none;
+        transition: all 0.3s ease;
         border-radius: 15px;
         overflow: hidden;
+        box-shadow: 0 5px 15px rgba(255, 107, 53, 0.1);
       }
 
       .card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
-        border-color: var(--hover-color);
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2);
       }
 
       .card-img-top {
@@ -118,39 +139,34 @@
       }
 
       .card-title {
-        color: var(--primary-color);
+        color: #ff6b35;
         font-weight: 700;
+        font-size: 1.5rem;
         margin-bottom: 1rem;
-        font-size: 1.8rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
       }
 
       .card-text {
         color: var(--text-color);
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
         font-size: 1.1rem;
+        line-height: 1.6;
         font-weight: 500;
       }
 
       .btn-outline-primary {
-        color: var(--primary-color);
-        border-color: var(--primary-color);
-        transition: all 0.3s ease;
+        color: #2C3E50;
+        border-color: #2C3E50;
         font-weight: 600;
-        font-size: 1.1rem;
-        padding: 10px 20px;
+        padding: 0.8rem 1.5rem;
         border-radius: 8px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        transition: all 0.3s ease;
       }
 
       .btn-outline-primary:hover {
-        background-color: var(--primary-color);
-        color: var(--dark-color);
-        border-color: var(--primary-color);
+        background-color: #2C3E50;
+        border-color: #2C3E50;
+        color: white;
         transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
       }
 
       .btn-outline-dark {
@@ -164,37 +180,31 @@
       }
 
       footer {
-        margin-top: auto;
-        background-color: var(--light-color);
-        color: var(--dark-color);
-        padding: 1rem 0;
-      }
-
-      footer a {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: color 0.3s ease;
-        font-weight: 500;
-      }
-
-      footer a:hover {
-        color: var(--hover-color);
+        background-color: rgba(255, 255, 255, 0.95);
+        color: var(--text-color);
+        padding: 1.5rem 0;
+        margin-top: 3rem;
+        border-top: 1px solid rgba(255, 107, 53, 0.1);
       }
 
       .github-link {
+        color: #2C3E50;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        color: #333;
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        transition: all 0.3s ease;
+        gap: 8px;
       }
 
       .github-link:hover {
-        color: #4A90E2;
-        background-color: rgba(74, 144, 226, 0.1);
+        color: #ff6b35;
+      }
+
+      .github-link i {
+        font-size: 18px;
+        margin-left: 5px;
+        display: inline-block;
       }
 
       .container {
@@ -228,6 +238,78 @@
           justify-content: center;
         }
       }
+
+      .card:hover .card-title {
+        transition: color 0.3s ease;
+      }
+
+      /* SGPA Calculator hover effect */
+      .col-lg-4:nth-child(1) .card:hover .card-title {
+        color: #007bff;
+      }
+
+      /* Theory Calculator hover effect */
+      .col-lg-4:nth-child(2) .card:hover .card-title {
+        color: #28a745;
+      }
+
+      /* Hybrid Calculator hover effect - Changed to Purple */
+      .col-lg-4:nth-child(3) .card:hover .card-title {
+        color: #6f42c1;
+      }
+
+      .card:hover .card-text {
+        transition: color 0.3s ease;
+      }
+
+      /* SGPA Calculator text hover effect */
+      .col-lg-4:nth-child(1) .card:hover .card-text {
+        color: #0056b3;
+      }
+
+      /* Theory Calculator text hover effect */
+      .col-lg-4:nth-child(2) .card:hover .card-text {
+        color: #1e7e34;
+      }
+
+      /* Hybrid Calculator text hover effect - Changed to Purple */
+      .col-lg-4:nth-child(3) .card:hover .card-text {
+        color: #563d7c;
+      }
+
+      /* Button hover effects to match the theme */
+      .col-lg-4:nth-child(1) .card:hover .btn-outline-dark {
+        color: #007bff;
+        border-color: #007bff;
+        background-color: transparent;
+      }
+
+      .col-lg-4:nth-child(2) .card:hover .btn-outline-dark {
+        color: #28a745;
+        border-color: #28a745;
+        background-color: transparent;
+      }
+
+      .col-lg-4:nth-child(3) .card:hover .btn-outline-dark {
+        color: #6f42c1;
+        border-color: #6f42c1;
+        background-color: transparent;
+      }
+
+      .col-lg-4:nth-child(1) .card:hover .btn-outline-dark:hover {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .col-lg-4:nth-child(2) .card:hover .btn-outline-dark:hover {
+        background-color: #28a745;
+        color: white;
+      }
+
+      .col-lg-4:nth-child(3) .card:hover .btn-outline-dark:hover {
+        background-color: #6f42c1;
+        color: white;
+      }
     </style>
 
     <!-- Bootstrap CSS -->
@@ -239,9 +321,10 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-wlpBqGX5r5+4U2Pq5tO8KYBjxwX8RGU8HrgK/ZCYX4U6ZuI2lUd4fQKA/8NnN9UhVgpJg3PGXgwZpG3QQ3NjQ=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link
       rel="stylesheet"
@@ -256,8 +339,8 @@
     ></script>
     <link
       rel="icon"
-      href="assets/icon/cu-logo.svg"
-      type="image/svg+xml"
+      href="assets/images/cuims-logo.png"
+      type="image/png"
     />
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
@@ -265,7 +348,7 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="./index.html">
-          <img src="./assets/icon/cu-logo.svg" alt="CU Calculator" height="40">
+          <img src="assets/images/cuims-logo.png" alt="">
         </a>
         <button
           class="navbar-toggler"
@@ -294,43 +377,43 @@
             </li>
           </ul>
           <a href="https://github.com/Aditya060806" target="_blank" class="github-link">
-            <i class="fab fa-github"></i>
             <span>Aditya Pandey</span>
+            <i class="fa-brands fa-github"></i>
           </a>
         </div>
       </div>
     </nav>
 
     <div class="container mt-5 mb-3">
-      <h1 class="text-center mb-5" style="color: var(--primary-color);">Chandigarh University Grade Calculator</h1>
+      <h1 class="main-heading">Chandigarh University Grade Calculator</h1>
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="card mb-3">
-            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="SGPA Calculator">
+            <img src="assets/images/1.png" class="card-img-top" alt="SGPA Calculator" style="height: 250px; object-fit: cover;">
             <div class="card-body">
               <h4 class="card-title">SGPA Calculator</h4>
               <p class="card-text">Calculate Chandigarh University SGPA with this helpful online tool.</p>
-              <a href="./sgpa-calculator.html" class="btn btn-outline-primary w-100">Calculate SGPA</a>
+              <a href="./sgpa-calculator.html" class="btn btn-outline-dark w-100">Calculate SGPA</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="card mb-3">
-            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="Theory Calculator">
+            <img src="assets/images/2.png" class="card-img-top" alt="Theory Calculator" style="height: 250px; object-fit: cover;">
             <div class="card-body">
               <h4 class="card-title">Theory Calculator</h4>
               <p class="card-text">Easily compute internal marks for theory subjects with this efficient tool.</p>
-              <a href="./theory-calculator.html" class="btn btn-outline-primary w-100">Calculate Theory</a>
+              <a href="./theory-calculator.html" class="btn btn-outline-dark w-100">Calculate Theory</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="card mb-3">
-            <img src="./assets/images/OIP.jpeg" class="card-img-top" alt="Hybrid Calculator" style="height: 250px; object-fit: cover;">
+            <img src="assets/images/3.jpeg" class="card-img-top" alt="Hybrid Calculator" style="height: 250px; object-fit: cover;">
             <div class="card-body">
               <h4 class="card-title">Hybrid Calculator</h4>
               <p class="card-text">Effortlessly determine marks for hybrid subjects using this intuitive calculator.</p>
-              <a href="./hybrid-calculator.html" class="btn btn-outline-primary w-100">Calculate Hybrid</a>
+              <a href="./hybrid-calculator.html" class="btn btn-outline-dark w-100">Calculate Hybrid</a>
             </div>
           </div>
         </div>
