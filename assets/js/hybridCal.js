@@ -10,21 +10,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const resetBtn = document.getElementById('reset');
     const resultDiv = document.getElementById('result');
 
-    // Validate inputs
+    // Validate that all elements exist
+    const requiredElements = [
+        theoryMst1, theoryMst2, theoryAssignment,
+        practicalAttendance, practicalViva, practicalFile,
+        calculateBtn, resetBtn, resultDiv
+    ];
+
+    if (requiredElements.some(element => !element)) {
+        console.error('Some required elements are missing');
+        return;
+    }
+
+    // Validate input value
     function validateInput(value, max) {
         const num = parseFloat(value);
         return !isNaN(num) && num >= 0 && num <= max;
     }
 
+    // Validate attendance (special case - only 0 or 2)
+    function validateAttendance(value) {
+        return value === '0' || value === '2';
+    }
+
     // Calculate Theory Component (70%)
     function calculateTheory(mst1, mst2, assignment) {
+        // MST average (out of 20 each) * 0.8 = 80% of theory internal
         const mstAverage = (parseFloat(mst1) + parseFloat(mst2)) / 2;
-        return (mstAverage * 0.8 + parseFloat(assignment) * 0.2) * 0.7;
+        // Assignment (out of 10) * 0.2 = 20% of theory internal
+        const assignmentMarks = parseFloat(assignment);
+        // Total theory marks = (MST_avg * 0.8 + Assignment * 0.2) * 0.7
+        return (mstAverage * 0.8 + assignmentMarks * 0.2) * 0.7;
     }
 
     // Calculate Practical Component (30%)
     function calculatePractical(attendance, viva, file) {
-        return (parseFloat(attendance) * 0.4 + parseFloat(viva) * 0.3 + parseFloat(file) * 0.3) * 0.3;
+        // Each component out of 10
+        // Attendance 40%, Viva 30%, File 30% of practical marks
+        return (parseFloat(attendance) * 0.4 + 
+                parseFloat(viva) * 0.3 + 
+                parseFloat(file) * 0.3) * 0.3;
     }
 
     // Reset all inputs
@@ -42,7 +67,9 @@ document.addEventListener('DOMContentLoaded', function() {
     calculateBtn.addEventListener('click', function() {
         try {
             // Validate theory inputs
-            if (!validateInput(theoryMst1.value, 20) || !validateInput(theoryMst2.value, 20) || !validateInput(theoryAssignment.value, 10)) {
+            if (!validateInput(theoryMst1.value, 20) || 
+                !validateInput(theoryMst2.value, 20) || 
+                !validateInput(theoryAssignment.value, 10)) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Invalid Theory Marks',
@@ -52,40 +79,63 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Validate practical inputs
-            if (!validateInput(practicalAttendance.value, 10) || !validateInput(practicalViva.value, 10) || !validateInput(practicalFile.value, 10)) {
+            if (!validateAttendance(practicalAttendance.value) || 
+                !validateInput(practicalViva.value, 10) || 
+                !validateInput(practicalFile.value, 10)) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Invalid Practical Marks',
-                    text: 'Please enter valid marks (0-10) for all practical components'
+                    text: 'Please enter valid marks: Attendance (0 or 2), Viva (0-10), File (0-10)'
                 });
                 return;
             }
 
             // Calculate components
-            const theoryMarks = calculateTheory(theoryMst1.value, theoryMst2.value, theoryAssignment.value);
-            const practicalMarks = calculatePractical(practicalAttendance.value, practicalViva.value, practicalFile.value);
+            const theoryMarks = calculateTheory(
+                theoryMst1.value,
+                theoryMst2.value,
+                theoryAssignment.value
+            );
+
+            const practicalMarks = calculatePractical(
+                practicalAttendance.value,
+                practicalViva.value,
+                practicalFile.value
+            );
+
             const totalMarks = theoryMarks + practicalMarks;
 
             // Display results with SweetAlert2
             Swal.fire({
                 icon: 'success',
-                title: 'Marks Calculated',
+                title: 'Marks Calculated Successfully',
                 html: `
-                    <div class="text-left">
-                        <p><strong>Theory Component (70%):</strong> ${theoryMarks.toFixed(2)}</p>
-                        <p><strong>Practical Component (30%):</strong> ${practicalMarks.toFixed(2)}</p>
-                        <p><strong>Total Marks:</strong> ${totalMarks.toFixed(2)}</p>
+                    <div class="text-start">
+                        <p class="mb-2"><strong>Theory Component (70%):</strong> ${theoryMarks.toFixed(2)}</p>
+                        <p class="mb-2"><strong>Practical Component (30%):</strong> ${practicalMarks.toFixed(2)}</p>
+                        <p class="mb-0"><strong>Total Internal Marks:</strong> ${totalMarks.toFixed(2)}</p>
                     </div>
                 `
             });
 
-            // Update result div
+            // Update result div with Bootstrap styling
             resultDiv.innerHTML = `
-                <div class="alert alert-success">
-                    <h4 class="alert-heading">Results:</h4>
-                    <p><strong>Theory Component (70%):</strong> ${theoryMarks.toFixed(2)}</p>
-                    <p><strong>Practical Component (30%):</strong> ${practicalMarks.toFixed(2)}</p>
-                    <p><strong>Total Marks:</strong> ${totalMarks.toFixed(2)}</p>
+                <div class="alert alert-success shadow-sm">
+                    <h5 class="alert-heading mb-3">Results:</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <strong>Theory Component (70%):</strong><br>
+                            ${theoryMarks.toFixed(2)}
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Practical Component (30%):</strong><br>
+                            ${practicalMarks.toFixed(2)}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <h5 class="mb-0">Total Internal Marks: ${totalMarks.toFixed(2)}</h5>
+                    </div>
                 </div>
             `;
 
@@ -101,11 +151,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Reset button click handler
     resetBtn.addEventListener('click', function() {
-        resetInputs();
-        Swal.fire({
-            icon: 'info',
-            title: 'Reset Complete',
-            text: 'All inputs have been cleared'
+        try {
+            resetInputs();
+            Swal.fire({
+                icon: 'success',
+                title: 'Reset Complete',
+                text: 'All inputs have been cleared'
+            });
+        } catch (error) {
+            console.error('Reset error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Reset Error',
+                text: 'An error occurred while resetting. Please try again.'
+            });
+        }
+    });
+
+    // Add input validation on change
+    [theoryMst1, theoryMst2, theoryAssignment, practicalAttendance, practicalViva, practicalFile].forEach(input => {
+        input.addEventListener('input', function() {
+            const max = this.max ? parseInt(this.max) : 10;
+            if (this.value > max) {
+                this.value = max;
+            }
+            if (this.value < 0) {
+                this.value = 0;
+            }
         });
     });
 }); 

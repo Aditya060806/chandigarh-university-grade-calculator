@@ -344,64 +344,13 @@
         <h3>Theory Marks (70%)</h3>
         <div class="row">
           <div class="col-md-4 mb-3">
-            <input id="mst1-mark" class="form-control" type="number" placeholder="MST 1 Marks" min="0" max="20">
+            <input id="theory-mst1" class="form-control" type="number" placeholder="MST 1 Marks (0-20)" min="0" max="20">
           </div>
           <div class="col-md-4 mb-3">
-            <input id="mst2-mark" class="form-control" type="number" placeholder="MST 2 Marks" min="0" max="20">
+            <input id="theory-mst2" class="form-control" type="number" placeholder="MST 2 Marks (0-20)" min="0" max="20">
           </div>
           <div class="col-md-4 mb-3">
-            <select id="assignment-mark" class="form-control">
-              <option value="">Assignment Marks</option>
-              <option value="10">10</option>
-              <option value="9">9</option>
-              <option value="8">8</option>
-              <option value="7">7</option>
-              <option value="6">6</option>
-              <option value="5">5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
-              <option value="0">0</option>
-            </select>
-          </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-md-4 mb-3">
-            <select id="quiz-mark" class="form-control">
-              <option value="">Quiz Marks</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
-              <option value="0">0</option>
-            </select>
-          </div>
-          <div class="col-md-4 mb-3">
-            <select id="surprise-test-mark" class="form-control">
-              <option value="">Surprise Test Marks</option>
-              <option value="12">12</option>
-              <option value="11">11</option>               
-              <option value="10">10</option>
-              <option value="9">9</option>
-              <option value="8">8</option>
-              <option value="7">7</option>
-              <option value="6">6</option>
-              <option value="5">5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
-              <option value="0">0</option>
-            </select>
-          </div>
-          <div class="col-md-4 mb-3">
-            <select id="attendence-mark" class="form-control">
-              <option value="">Attendance Marks</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
-              <option value="0">0</option>
-            </select>
+            <input id="theory-assignment" class="form-control" type="number" placeholder="Assignment Marks (0-10)" min="0" max="10">
           </div>
         </div>
 
@@ -410,25 +359,37 @@
         <!-- Practical Marks Section -->
         <h3>Practical Marks (30%)</h3>
         <div class="row">
-          <div class="col-md-6 mb-3">
-            <input id="practical-mark" class="form-control" type="number" placeholder="Practical Marks" min="0" max="50">
+          <div class="col-md-4 mb-3">
+            <select id="practical-attendance" class="form-control">
+              <option value="" selected disabled>Select Attendance</option>
+              <option value="0">0 Marks</option>
+              <option value="2">2 Marks</option>
+            </select>
           </div>
-          <div class="col-md-6 mb-3">
-            <input id="viva-mark" class="form-control" type="number" placeholder="Viva Marks" min="0" max="50">
+          <div class="col-md-4 mb-3">
+            <input id="practical-viva" class="form-control" type="number" placeholder="Viva (0-10)" min="0" max="10">
+          </div>
+          <div class="col-md-4 mb-3">
+            <input id="practical-file" class="form-control" type="number" placeholder="File (0-10)" min="0" max="10">
           </div>
         </div>
 
-        <!-- Calculate Button -->
+        <!-- Buttons -->
         <div class="row mt-4">
-          <div class="col-12 text-center">
-            <button id="calculate-btn" class="btn btn-primary">
-              <i class="fas fa-calculator me-2"></i>Calculate Hybrid Marks
+          <div class="col-md-6 mb-3">
+            <button id="calculate" class="btn btn-primary w-100">
+              <i class="fas fa-calculator me-2"></i>Calculate Marks
+            </button>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button id="reset" class="btn btn-warning w-100">
+              <i class="fas fa-redo me-2"></i>Reset
             </button>
           </div>
         </div>
 
         <!-- Result Display -->
-        <div id="result" class="row mt-4"></div>
+        <div id="result" class="mt-4"></div>
       </div>
     </div>
 
